@@ -9,7 +9,7 @@ import numpy as np
 
 
 def line2D(side):
-    """2D endpoint creation for square of side length side"""
+    #2D endpoint creation for square of side length side
     startCell = []
     endCell = [] 
     for i in range(side):
@@ -22,7 +22,7 @@ def line2D(side):
     
     
 def lineParse(cubeLen):
-    """3D endpoint creation for cube of length cubeLen"""
+    #3D endpoint creation for cube of length cubeLen
     startArr = []
     endArr = []
     for i in range(cubeLen):
@@ -46,7 +46,7 @@ def lineParse(cubeLen):
     return startArr, endArr
 
 def to2DFloat(start, end):
-    """To convert to float 2D array instead of 3D int"""
+    #To convert to float 2D array instead of 3D int
     startf = []
     endf = []
     for i in range(len(start)):
@@ -62,7 +62,8 @@ def to2DFloat(start, end):
             endf.append(tempe)
     return startf, endf
     
-"""start and end points for each line in the 120x120x120 cube"""
+#start and end points for each line in the 120x120x120 cube
+
 #startArr, endArr = lineParse(120)
 #np.savez("startEndPts.npz",startArr=startArr, endArr=endArr )
 
