@@ -5,10 +5,10 @@ Spyder Editor
 This is a temporary script file.
 """
 
-import Algo3 as a
+import ridgeletTransform_withNorm as a
 import peakDetection as pd
 import numpy as np
-import ConvertDataFloat32 as conv
+import convertDataFloat32 as conv
 import matplotlib.pyplot as plt
 
 def convertData(simulationFile):
