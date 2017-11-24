@@ -79,12 +79,31 @@ def algorithm3(pos):
     #for i in range(10):
         #for j in range(10):
             ifftLinesN[i][j] = ifftLines[i][j]/normFactors[i][j]
-            
-            
-            
-
-
     return ifftLinesN
+  
+  #Wavelet code
+  """
+    cA = []
+    cD = []
+
+    print "Wavelet Transform..."
+    # Appply 1D Wavelet to find coefficients
+    for i in range(len(ifftLines)):
+        cA.append(pywt.dwt(ifftLines[i], 'haar')[0])
+        cD.append(pywt.dwt(ifftLines[i], 'haar')[1])
+#        cA.append(pywt.dwt(normalizedLines[i], 'haar')[0])
+#        cD.append(pywt.dwt(normalizedLines[i], 'haar')[1])
+    print "Done!"
+
+
+    return cA, cD
+    
+cA, cD = algorithm3(pos)
+            
+    """        
+
+
+    
 
 
 #ifftLines = algorithm3(pos)
