@@ -8,6 +8,13 @@ Created on Thu May 11 10:12:24 2017
 import numpy as np
 
 def getPos(dataFile):
+    
+    """
+    Input: the raw data file from the simulation
+    Output: an array with all of the x, y and z coordinates
+    Makes the raw data useable for computations.
+    """
+    
     data = np.fromfile(dataFile, np.float32)
     data = data[12:]
     xpos = data[0::6]
