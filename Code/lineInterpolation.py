@@ -12,6 +12,7 @@ import numpy as np
 import cube as cb
 
 # Make new cube with octant assignment
+
 #testSize = 20
 #cube = na.twins3d(na.octant_assignment(testSize))
 #start, end = cb.lineParse(testSize)
@@ -25,6 +26,7 @@ def findSteps(start):
     nbSteps = 2*nbCells
     return nbSteps
 
+
 def lineLen(start, end):
     lengthArray = []
     for line in range(len(start)):
@@ -32,6 +34,8 @@ def lineLen(start, end):
         lengthArray.append(x)
 
     return lengthArray
+
+
 
 #Define the length of steps necessary to have the apropriate number of steps
 #and then find the x value for each point for each step
@@ -88,6 +92,8 @@ def yArray(increments, start, slope, nbSteps):
 
     return array
 
+"""
+#Was a test for multiprocessing
 def yArray_mp(increments, start, slope, nbSteps, lineNumber):
     array = np.zeros((nbSteps,1), dtype = np.int)
     for i in range(nbSteps):
@@ -97,6 +103,7 @@ def yArray_mp(increments, start, slope, nbSteps, lineNumber):
             array[i] = np.rint((increments[i]-start[0])*lineNumber + start[1])
         
     return array
+"""
 
 #Find the points on the z axis corresponding to the x point
 def zArray(increments, start, slope, nbSteps):
@@ -110,6 +117,8 @@ def zArray(increments, start, slope, nbSteps):
 
     return array
     
+"""  
+#Was a test for multiprocessing
 def zArray_mp(increments, start, slope, nbSteps, lineNumber):
     array = np.zeros((nbSteps,1), dtype = np.int)
     for i in range(nbSteps):
@@ -119,6 +128,7 @@ def zArray_mp(increments, start, slope, nbSteps, lineNumber):
             array[i] = np.rint((increments[i]-start[0])*lineNumber + start[1])
             
     return array
+"""
 
 def lineCreation(start, end):
     print "--> Length..."
@@ -150,7 +160,7 @@ def initLineCreation_mp(start, end):
     mz = zSlope(start, end)
     
     return nbSteps, x, my, mz
-    
+    """
 def lineCreation_mp(nbSteps, start, x, slopey, slopez, lineNumber):
 #    print "Y Array..."
     arrayy = yArray_mp(x, start, slopey, nbSteps, lineNumber)
@@ -167,7 +177,7 @@ def multiprocessLine(nbSteps, start, x, my, mz, lineNumber):
         lines.append(np.array([x[i],y[i], z[i]]))
     
     return lines
-    
+  """  
 #lines = lineCreation(start,end)
 #lines, arrayx, arrayy, arrayz, slopey, slopez, length = lineCreation(start,end)
 #print np.shape(lines)
