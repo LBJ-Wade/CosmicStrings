@@ -157,7 +157,7 @@ def width_det(data, max_found):
         widths.append(fwhm[2*i+1]-fwhm[2*i])
     return widths
     
-def find_max_width(data, level = -1):
+def max_and_width(data, level = -1):
     max_found, D = detect_peak(data, level)
     widths = width_det(data, max_found)
     results = []
