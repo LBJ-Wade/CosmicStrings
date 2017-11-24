@@ -28,6 +28,7 @@ import matplotlib.pyplot as plt
 #pos[1,:] = ypos[:]
 #pos[2,:] = zpos[:]
 
+#Corrects for the buffer
 def buffer_adjust(pos, nbCells):
     for i in range(len(pos)):
         if pos[i] >= nbCells:
