@@ -107,3 +107,28 @@ cA, cD = algorithm3(pos)
 
 
 #ifftLines = algorithm3(pos)
+
+
+
+#Old code from other file in case we need it
+#    print "Normalization of dataset..."
+#    #Need normalization later
+#    start, end = bnorm.formatting(startl, endl)
+#    cCube, cStart, cEnd = bnorm.center(start, end, size)
+#    normFactors = []
+#    lengths = []
+#    count = 0
+#    for i in range(len(cStart)):
+#        factor, length = bnorm.normalize(cStart[i], cEnd[i], cCube, 96, i)
+#        normFactors.append(factor)
+#        lengths.append(length)
+#        count += 1
+#        print ("Line %s" %count)
+#    
+#    
+#    normalizedLines = []
+#    for i in range(len(ifftLines)):
+#        normalizedLine = ifftLines[i]/normFactors[i]
+#        normalizedLines.append(normalizedLine)
+#    
+#    print "Done!"
