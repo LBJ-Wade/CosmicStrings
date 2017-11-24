@@ -45,6 +45,11 @@ numPoints = 93
 
 
 def formatting(startArray, endArray):
+  
+  """
+  Input arrays of start and end points of lines
+  Outputs a formatted version of these arrays
+  """
     
     startPoints = np.zeros((27648, 3), dtype = int)
     for i in range(27648):
@@ -59,7 +64,13 @@ def formatting(startArray, endArray):
             
     return startPoints, endPoints
 
+  
 def reshape(xArray, yArray, zArray, size):
+  """
+  Input arrays of x, y and z coordinates of lines and the size of the lines
+  Outputs one array containing all the coordinates
+  Combines arrays into one big array for ease of use later
+  """
 
     nbSteps = 2*(size)
     completeArray = np.zeros((192, 27648, 3), dtype = int)
@@ -76,6 +87,12 @@ def reshape(xArray, yArray, zArray, size):
 
 
 def center(start, end, completeArray, size):
+  
+  """
+  Input the start and end point arrays as well as the array of all coordinates from reshape()
+  Output a cube of coordinates centered at the origin with the corresponding indices of the start and end points and the coordinate array.
+  Centeres all of the inputted arrays as well as the cube of coordinates
+  """
 
     myCube = []
     
@@ -119,6 +136,12 @@ def center(start, end, completeArray, size):
 
 #Do this for each point in each line
 def normalize(completeArray, start, end, centeredCube, size, index):
+  
+  """
+  Input the centered start and end point arrays, the centered coordinate cube, the centered coordinate array and the size of the lines. Also the index of the line to be used (loop through all lines)
+  Output an array containing the number of cells in the perpendicular line to each point and another containing the length of the line.
+  Finds the normalization factor. 
+  """
 
     newCube = np.transpose(centeredCube)
 
@@ -198,6 +221,12 @@ def normalize(completeArray, start, end, centeredCube, size, index):
 
 
 def finalNormalization(xArray, yArray, zArray, size, startl, endl):
+  
+  """
+  Input the arrays of x, y, and z coordinates, the start and end points and the size of the lines.
+  Outputs the same as normalization()
+  Combines all of the above functions.
+  """
     
     newArray = reshape(xArray, yArray, zArray, size)
     cCube, cStart, cEnd, completeArray = center(startl, endl, newArray, size)
