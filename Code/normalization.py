@@ -195,10 +195,7 @@ def normalize(completeArray, start, end, centeredCube, size, index):
     length = np.max(zArray)/size
     
     for j in range(len(zArray)):
-        zArray[j] = zArray[j]/length
-    
-    for j in range(len(zArray)):
-        number = zArray[j]
+        nunmber = zArray[j]/length
 
         lowerBound.append(math.floor(number))
         upperBound.append(math.ceil(number))

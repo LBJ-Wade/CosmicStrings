@@ -7,7 +7,7 @@ Created on Mon Jul 17 20:03:49 2017
 
 #import normalization_array as na
 import numpy as np
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 ##Data acquisition
 #default_dataname = "pos(1)"
@@ -61,14 +61,11 @@ def density(pos, cellSize = 2.0, s = 1, nbCells = 192):
 #        if i%1000 == 0:
 #            print "{0:2.0f}%".format(np.float(i)/len(xpos) * 100)
         #This takes the coordinates --> which cell to count it into
-        x = np.floor(xpos[i]/cellSize)
-        x = np.int(x)
+        x = np.int(np.floor(xpos[i]/cellSize))
         
-        y = np.floor(ypos[i]/cellSize)
-        y = np.int(y)
+        y = np.int(np.floor(ypos[i]/cellSize))
         
-        z = np.floor(zpos[i]/cellSize)
-        z = np.int(z)
+        z = np.int(np.floor(zpos[i]/cellSize))
         #Adds a count to the appropriate cell
         density[x,y,z] += 1
      

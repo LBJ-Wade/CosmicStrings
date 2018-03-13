@@ -5,7 +5,7 @@ Created on Tue Jun 20 11:55:52 2017
 
 @author: donnashimizu
 """
-import numpy as np 
+#import numpy as np 
 
 
 def line2D(side):
@@ -13,20 +13,21 @@ def line2D(side):
     startCell = []
     endCell = [] 
     for i in range(side):
+        for j in range(side):
             startCell.append([i,0])
             endCell.append([side - i,side])
-    for j in range(side):
             startCell.append([0,j])
             endCell.append([side,side - j]) 
     return startCell , endCell
     
-    
+#Could this also be simplified to one loop? EC    
 def lineParse(cubeLen):
     #3D endpoint creation for cube of length cubeLen
     startArr = []
     endArr = []
     for i in range(cubeLen):
         for j in range(cubeLen):
+            for k in range(cubeLen):
                 start = [i,j,0]
                 end = [cubeLen-i-1, cubeLen-j-1, cubeLen-1]
                 startArr.append(start)
