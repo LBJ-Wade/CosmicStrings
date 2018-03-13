@@ -19,6 +19,7 @@ for i in range(10):
         for k in range(10):
             completeArray[i, j, k] = i+j+k
 myCube = []
+
 def center(start, end, completeArray, size, indices):
     
     
@@ -55,7 +56,7 @@ def center(start, end, completeArray, size, indices):
         end[i][2] = end[i][2] - half
     
 
-    return myCube, start, end, completeArray
+    return start, end, completeArray
 
 def multi_threading(start, end, completeArray, size):
     """
