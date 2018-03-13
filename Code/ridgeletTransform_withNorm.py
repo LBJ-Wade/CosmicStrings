@@ -4,11 +4,16 @@ Created on Fri Jun  9 19:25:14 2017
 
 @author: felix
 """
+#Import Libraries
 import numpy as np
+
+#Import other files
+import pickLines as pl
 import density3D as dens
 import createLines as cube
 import normalization as norm
 import lineInterpolation as line
+
 
 #This algo does not return ridglet coefficients, but rather the 
 #lines that have been created before the wavelet transform should 
@@ -21,9 +26,14 @@ def algorithm3(pos):
     FFTdensity = np.fft.fftn(density)
     
     #Initializing line's start and end points
-    startl, endl = cube.lineParse(size)
-
+    start1, end1 = cube.lineParse(size)
+    
     print "Creating lines..."
+    
+    #Choose resolution
+    startl, endl = pl.chooseLines(start1, end1, pl.getNbLines(size))
+    
+    #Make Lines
     lines, xArray, yArray, zArray = line.lineCreation(startl,endl)
     
     print "Selecting FFT lines..."
