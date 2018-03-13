@@ -9,7 +9,7 @@ Created on Wed Jun 28 18:35:55 2017
 
 #import normalization_array as na
 import numpy as np
-import cube as cb
+#import cube as cb
 
 # Make new cube with octant assignment
 

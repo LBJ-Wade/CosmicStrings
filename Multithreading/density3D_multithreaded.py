@@ -1,13 +1,20 @@
+#!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 """
-Created on Mon Jul 17 20:03:49 2017
+Created on Mon Jan  8 18:49:20 2018
 
+@author: eloisechakour
+"""
+
+"""
+Created on Mon Jul 17 20:03:49 2017
 @author: felix
 """
 
 #import normalization_array as na
+import threading as th
 import numpy as np
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 ##Data acquisition
 #default_dataname = "pos(1)"
@@ -37,6 +44,7 @@ def buffer_adjust(pos, nbCells):
             pos[i] = nbCells + pos[i]
     return pos
 
+
 #nbCells is determined before the simulation
 def density(pos, cellSize = 2.0, s = 1, nbCells = 192):
     
@@ -52,20 +60,24 @@ def density(pos, cellSize = 2.0, s = 1, nbCells = 192):
     
     print ("Defining limits...")    
     size = np.int(np.ceil(nbCells/cellSize))    
+#    density = np.zeros((size,size,size,))
     density = np.zeros((size,size,size,))
-    
-    
+
+
     print ("Counting densities...")
     for i in range(len(xpos)):
         #This shows the percentage of data counted
 #        if i%1000 == 0:
 #            print "{0:2.0f}%".format(np.float(i)/len(xpos) * 100)
         #This takes the coordinates --> which cell to count it into
-        x = np.int(np.floor(xpos[i]/cellSize))
+        x = np.floor(xpos[i]/cellSize)
+        x = np.int(x)
         
-        y = np.int(np.floor(ypos[i]/cellSize))
+        y = np.floor(ypos[i]/cellSize)
+        y = np.int(y)
         
-        z = np.int(np.floor(zpos[i]/cellSize))
+        z = np.floor(zpos[i]/cellSize)
+        z = np.int(z)
         #Adds a count to the appropriate cell
         density[x,y,z] += 1
      
