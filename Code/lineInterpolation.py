@@ -21,9 +21,8 @@ import numpy as np
 #nbCells = len(cube)
 
 #Find a measure for each cube
-def findSteps(start):
-    nbCells = np.max(start)+1
-    nbSteps = 2*nbCells
+def findSteps(nbCells):
+    nbSteps = (nbCells+1)
     return nbSteps
 
 
@@ -32,7 +31,7 @@ def lineLenX(start, end):
     for line in range(len(start)):
         x = end[line][0] - start[line][0]
         lengthArray.append(x)
-
+    lengthArray = np.asarray(lengthArray)
     return lengthArray
 
 
@@ -50,6 +49,9 @@ def xArray(start, end, length, nbSteps):
     for k in range(len(stepLenArray)):
         for l in range(nbSteps):
             stepsArray[k, l] = np.rint(start[k][0] + l*stepLenArray[k])
+    
+    stepLenArray = np.asarray(stepLenArray)
+    stepsArray = np.asarray(stepsArray)
     return stepsArray
 
 #Find the y slope of the line (vs x)
@@ -64,7 +66,8 @@ def ySlope(start, end):
         else:
             m = np.nan
         slope.append(m)
-
+    
+    slope = np.asarray(slope)
     return slope
 
 #Find the z slope of the line (vs x)
@@ -77,7 +80,7 @@ def zSlope(start, end):
         else:
             m = np.nan
         slope.append(m)
-
+    slope = np.asarray(slope)
     return slope
 
 #Find the points on the y axis corresponding to the x point
@@ -88,8 +91,8 @@ def yArray(increments, start, slope, nbSteps):
             if slope[i] is not np.nan:
                 array[i, j] = np.rint((increments[i, j]-start[i][0])*slope[i] + start[i][1])
             else:
+                #Needs to be changed
                 array[i, j] = np.rint((increments[i, j]-start[i][0])*i + start[i][1])
-
     return array
 
 """
@@ -113,8 +116,8 @@ def zArray(increments, start, slope, nbSteps):
             if slope[i] is not np.nan:
                 array[i, j] = np.rint((increments[i, j]-start[i][0])*slope[i] + start[i][2])
             else:
+                #Needs to be fized
                 array[i, j] = np.rint((increments[i, j]-start[i][0])*i + start[i][2])
-
     return array
     
 """  
