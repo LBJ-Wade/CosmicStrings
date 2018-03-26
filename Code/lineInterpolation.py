@@ -133,7 +133,7 @@ def zArray_mp(increments, start, slope, nbSteps, lineNumber):
 def lineCreation(start, end):
     print ("--> Length...")
     nbSteps = findSteps(start)
-    length = lineLen(start,end)
+    length = lineLenX(start,end)
     print ("--> X array...")    
     arrayx = xArray(start,end,length, nbSteps)
     print ("--> Slopes...")    
