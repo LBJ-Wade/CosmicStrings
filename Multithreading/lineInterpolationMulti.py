@@ -29,9 +29,8 @@ end = [[2, 3, 4], [2, 3, 4], [2, 3, 4]]
 
 
 #Find a measure for each cube
-def findSteps(start):
-    nbCells = np.max(start)+1
-    nbSteps = 2*nbCells
+def findSteps(nbCells):
+    nbSteps = (nbCells+1)
     return nbSteps
 
 
@@ -132,18 +131,7 @@ def yArray(increments, start, slope, nbSteps):
 
     return arrayy
 
-"""
-#Was a test for multiprocessing
-def yArray_mp(increments, start, slope, nbSteps, lineNumber):
-    array = np.zeros((nbSteps,1), dtype = np.int)
-    for i in range(nbSteps):
-        if slope is not np.nan:
-            array[i] = np.rint((increments[i]-start[0])*slope + start[1])
-        else:
-            array[i] = np.rint((increments[i]-start[0])*lineNumber + start[1])
-        
-    return array
-"""
+
 
 arrayz = np.zeros((len(start),findSteps(start)), dtype = np.int)
 #Find the points on the z axis corresponding to the x point
@@ -157,18 +145,6 @@ def zArray(increments, start, slope, nbSteps):
 
     return arrayz
     
-"""  
-#Was a test for multiprocessing
-def zArray_mp(increments, start, slope, nbSteps, lineNumber):
-    array = np.zeros((nbSteps,1), dtype = np.int)
-    for i in range(nbSteps):
-        if slope is not np.nan:
-            array[i] = np.rint((increments[i]-start[0])*slope + start[1])
-        else:
-            array[i] = np.rint((increments[i]-start[0])*lineNumber + start[1])
-            
-    return array
-"""
 
 def lineCreation(start, end):
     print ("--> Length...")

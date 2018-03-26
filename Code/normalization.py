@@ -105,8 +105,7 @@ def center(start, end, completeArray, size):
         half = size/2
     else: 
         half = size/2 - 0.5
-    
-        
+      
 
     
     for i in range(len(myCube)):
@@ -160,6 +159,7 @@ def normalize(completeArray, start, end, centeredCube, size, index):
                 position.append(j)
                 break;
 
+    
     x = end[0] - start[0]
     y = end[1] - start[1]
     z = end[2] - start[2]
@@ -172,18 +172,20 @@ def normalize(completeArray, start, end, centeredCube, size, index):
     completeArray = np.transpose(completeArray)
     
     
-    Rphi = [[math.cos(phi), - math.sin(phi), 0], [math.sin(phi), math.cos(phi), 0], [0, 0, 1]]
-    Rtheta = [[1, 0, 0], [0, math.cos(theta), - math.sin(theta)], [0, math.sin(theta), math.cos(theta)]]
+    Rphi = np.array([[math.cos(phi), - math.sin(phi), 0], [math.sin(phi), math.cos(phi), 0], [0, 0, 1]])
+    Rtheta = np.array([[1, 0, 0], [0, math.cos(theta), - math.sin(theta)], [0, math.sin(theta), math.cos(theta)]])
 
     completeArray = np.transpose(completeArray)
     matrix = np.dot(Rphi, newCube, out = None)
     rotated = np.dot(Rtheta, matrix, out = None)
     
+    position = np.asarray(position)
 
     zArray = []
     for j in range(len(position)):
         zArray.append(rotated[2, position[j]])
 
+    zArray = np.asarray(zArray)
     
     negativeMin = np.min(zArray)
     
@@ -195,11 +197,13 @@ def normalize(completeArray, start, end, centeredCube, size, index):
     length = np.max(zArray)/size
     
     for j in range(len(zArray)):
-        nunmber = zArray[j]/length
+        number = zArray[j]/length
 
         lowerBound.append(math.floor(number))
         upperBound.append(math.ceil(number))
-
+    
+    lowerBound = np.asarray(lowerBound)
+    upperBound = np.asarray(upperBound)
     
     nbCells = []
 
@@ -212,7 +216,7 @@ def normalize(completeArray, start, end, centeredCube, size, index):
                 
         nbCells.append(counter)
 
-    
+    nbCells = np.asarray(nbCells)
     return nbCells, length
 
 
@@ -236,6 +240,10 @@ def finalNormalization(xArray, yArray, zArray, size, startl, endl):
         lengths.append(length)
         count += 1
         print ("Line %s" %count)
+    
+    normFactors = np.asarray(normFactors)
+    lengths = np.asarray(lengths)
+    
     return normFactors, lengths
 
 """

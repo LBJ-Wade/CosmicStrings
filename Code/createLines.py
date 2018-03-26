@@ -5,7 +5,7 @@ Created on Tue Jun 20 11:55:52 2017
 
 @author: donnashimizu
 """
-#import numpy as np 
+import numpy as np 
 
 
 def line2D(side):
@@ -18,6 +18,9 @@ def line2D(side):
             endCell.append([side - i,side])
             startCell.append([0,j])
             endCell.append([side,side - j]) 
+            
+    startCell = np.asarray(startCell)
+    endCell = np.asarray(endCell)
     return startCell , endCell
     
 #Could this also be simplified to one loop? EC    
@@ -44,6 +47,9 @@ def lineParse(cubeLen):
                 end = [cubeLen-1, cubeLen-i-1, cubeLen-j-1]
                 startArr.append(start)
                 endArr.append(end)
+    
+    startArr = np.asarray(startArr)
+    endArr = np.asarray(endArr)
     return startArr, endArr
 
 def to2DFloat(start, end):
@@ -61,6 +67,9 @@ def to2DFloat(start, end):
             tempe.append(float(end[i][0,1]))
             tempe.append(float(end[i][0,2]))
             endf.append(tempe)
+    
+    startf = np.asarray(startf)
+    endf = np.asarray(endf)
     return startf, endf
     
 #start and end points for each line in the 120x120x120 cube

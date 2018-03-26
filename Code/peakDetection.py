@@ -4,7 +4,7 @@ Created on Tue Jun 20 12:13:11 2017
 
 @author: felix
 """
-from scipy import signal
+#from scipy import signal
 import numpy as np
 import pywt 
 import matplotlib.pyplot as plt
@@ -26,6 +26,7 @@ def multilevel_wavelet(data, level, An = [], Dn = []):
         Dn.append(D)
         #Recursive call on A 
         multilevel_wavelet(A,level-1, An,Dn)
+        #@Felix, change this to arrays from lists :) -EC
         return An,Dn
 
 #Checks for zero crossing on selected data and creates
@@ -47,6 +48,7 @@ def zero_crossing(data,level):
 #            if data[i] < 0 and data[i+1] > 0:
 #                crossings.append((2*i+1)*2**(level-1))      
 #                crossings.append((i+1)*2**level)
+    crossings = np.asarray(crossings)
     return crossings
     
 def zero_crossings(data, level):
@@ -66,6 +68,7 @@ def zero_crossings(data, level):
         elif data[i]<0:
             if data[i-1] > 0 or data[i+1]>0:
                 crossings.append((2*i+1)*2**(level-1))
+    crossings = np.asarray(crossings)
     return crossings
     
     
@@ -163,7 +166,7 @@ def max_and_width(data, level = -1):
     results = []
     for i in range(len(max_found)):
         results.append([max_found[i],widths[i]])
-    
+    results = np.asarray(results)
     return results
             
 ##Data generation

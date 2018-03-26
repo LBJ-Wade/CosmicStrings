@@ -27,7 +27,8 @@ def chooseLines(start, end, stepLen):
             newStart.append(start[i+stepLen])
             newEnd.append(end[i+stepLen])
     
-    
+    newStart = np.asarray(newStart)
+    newEnd = np.asarray(newEnd)
     return newStart, newEnd
 
 
