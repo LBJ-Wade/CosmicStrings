@@ -10,58 +10,43 @@ import time
 
 start = [[1, 2, 3], [1, 2, 3], [1, 2, 3]]
 end = [[2, 3, 4], [2, 3, 4], [2, 3, 4]]
-
-completeArray = np.zeros((10, 10, 10), dtype = float)
-for i in range(10):
-    for j in range(10):
-        for k in range(10):
-            completeArray[i, j, k] = i+j+k
-
+size = 200
+# 
+# completeArray = np.zeros((size, size, size), dtype=float)
+# for i in range(size):
+#     for j in range(size):
+#         for k in range(size):
+#             completeArray[i, j, k] = i+j+k
+#             # print(i)
+#
+# np.save("completeArray", completeArray)
+completeArray = np.load("completeArray.npy")
 
 def center(start, end, completeArray, size):
 
-    myCube = []
+    start = np.asarray(start)
+    end = np.asarray(end)
 
-    for i in range(size):
-        for j in range(size):
-            for k in range(size):
-                #time.sleep(0.5)
-                myCube.append([i, j, k])
-                # print(i)
+    myCube = np.zeros(shape=(size**3, 3))
+    counter = 0
+    for i in range(size-1):
+        for j in range(size-1):
+            for k in range(size-1):
+                myCube[counter] = [i, j, k]
+                counter += 1
+                # print(counter)
 
-    if (size/2)%2 == 0:
-        half = size/2
-    else:
-        half = size/2 - 0.5
-
-
-
-
-    for i in range(len(myCube)):
-        myCube[i][0] = myCube[i][0] - half
-        myCube[i][1] = myCube[i][1] - half
-        myCube[i][2] = myCube[i][2] - half
-
-    for i in range (10):
-        for j in range (10):
-            completeArray[i, j, 0] = completeArray[i, j, 0] - half
-            completeArray[i, j, 1] = completeArray[i, j, 1] - half
-            completeArray[i, j, 2] = completeArray[i, j, 2] - half
-
-    for i in range(len(start)):
-        start[i][0] = start[i][0] - half
-        start[i][1] = start[i][1] - half
-        start[i][2] = start[i][2] - half
-        end[i][0] = end[i][0] - half
-        end[i][1] = end[i][1] - half
-        end[i][2] = end[i][2] - half
-
+    half = np.int(size/2)
+    myCube -= half
+    completeArray -= half
+    start -= half
+    end -= half
 
     return myCube, start, end, completeArray
 
-startTime= time.time()
-cube, start1, end1, completeArray1 = center(start, end, completeArray, 10)
+startTime = time.time()
+cube, start1, end1, completeArray1 = center(start, end, completeArray, size)
 endTime = time.time()
 
 print(endTime-startTime)
-print(completeArray1)
+# print(completeArray1)

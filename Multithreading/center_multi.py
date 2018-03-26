@@ -24,46 +24,28 @@ for i in range(10):
 
 def center(start, end, completeArray, size, indices):
 
-    lock = th.Lock()
-
-    # lock.acquire()
-    t_start = np.asarray(start)
-    t_end = np.array(end)
-    t_completeArray = completeArray
-    # lock.release()
-    # t_start = np.asarray(t_start)
-    # t_end = np.asarray(t_end)
+    start = np.asarray(start)
+    end = np.asarray(end)
 
     start1, stop1, start2, stop2, start3, stop3 = indices
     cubeLen = (stop1-start1)*(stop2-start2)*(stop3-start3)
-    myCube = np.zeros(shape=(cubeLen, 3))
-    # with lock:
+    myCube = np.zeros(shape=(cubeLen**3, 3))
     counter = 0
-
-    # print(myCube)
-
     for i in range(start1, stop1):
         for j in range(start2, stop2):
             for k in range(start3, stop3):
-                # break
                 myCube[counter] = [i, j, k]
-                # with lock:
                 counter += 1
-                # print(counter)
 
-    # with lock:
     counter = 0
 
     half = np.int(size/2)
-    # lock.acquire()
     myCube -= half
-    print(half)
-    t_completeArray -= half
-    t_start -= half
-    t_end -= half
-    # lock.release()
-    # print(t_completeArray)
-    return myCube, t_start, t_end, t_completeArray
+    completeArray -= half
+    start -= half
+    end -= half
+
+    return myCube, start, end, completeArray
 
 
 def multi_threading(start, end, completeArray, size):
@@ -87,6 +69,6 @@ def multi_threading(start, end, completeArray, size):
     return start, end, completeArray
 
 
-myCube1, start1, end1, completeArray1 = multi_threading(start, end, completeArray, 10)
+start1, end1, completeArray1 = multi_threading(start, end, completeArray, 10)
 
-# print(completeArray1)
+print(completeArray1)
