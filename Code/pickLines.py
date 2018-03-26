@@ -10,18 +10,11 @@ import numpy as np
 
 def getNbLines():
     resolution = input("Percentage of lines to consider (integer): ")/100.0
-<<<<<<< HEAD
     stepLen = np.floor(1.0/resolution)
-    
-=======
-    stepLen = np.floor(resolution/1.0)
-
->>>>>>> 4de266e4336ecc9698d77abb90add7b6b9d2d1aa
     return stepLen
 
 
 def chooseLines(start, end, stepLen):
-<<<<<<< HEAD
     
     newStart = []
     newEnd = []
@@ -39,15 +32,3 @@ def chooseLines(start, end, stepLen):
 
 
 
-
-
-
-
-
-
-
-
-
-=======
-    return start[0::stepLen], end[0::stepLen]
->>>>>>> 4de266e4336ecc9698d77abb90add7b6b9d2d1aa
