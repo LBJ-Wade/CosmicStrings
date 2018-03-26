@@ -43,6 +43,11 @@ startl, endl = cube.lineParse(size)
 numPoints = 93
 """
 
+"""
+27648 == number of lines aka 3*96^2
+really big number = n^3 n=96
+"""
+
 
 def formatting(startArray, endArray):
   
@@ -51,27 +56,25 @@ def formatting(startArray, endArray):
   Outputs a formatted version of these arrays
   """
     
-    startPoints = np.zeros((27648, 3), dtype = int)
-    for i in range(27648):
-        for j in range(3):
-            startPoints[i, j] = startArray[i][0][j]
+  startPoints = np.zeros((27648, 3), dtype = int)
+  for i in range(27648):
+      for j in range(3):
+          startPoints[i, j] = startArray[i][0][j]
             
-    endPoints = np.zeros((27648, 3), dtype = int)
+  endPoints = np.zeros((27648, 3), dtype = int)
             
-    for i in range(27648):
-        for j in range(3):
-            endPoints[i, j] = endArray[i][0][j]
+  for i in range(27648):
+      for j in range(3):
+          endPoints[i, j] = endArray[i][0][j]
             
-    return startPoints, endPoints
+  return startPoints, endPoints
 
-  
-def reshape(xArray, yArray, zArray, size):
-  """
+"""
   Input arrays of x, y and z coordinates of lines and the size of the lines
   Outputs one array containing all the coordinates
   Combines arrays into one big array for ease of use later
-  """
-
+""" 
+def reshape(xArray, yArray, zArray, size):
     nbSteps = 2*(size)
     completeArray = np.zeros((192, 27648, 3), dtype = int)
     for i in range(192):
@@ -134,11 +137,11 @@ def center(start, end, completeArray, size):
 
 
 #Do this for each point in each line
-def normalize(completeArray, start, end, centeredCube, size, index):
+def normalize(completeArray, start, end, centeredCube, size, index, nbLines, nbCellsinCube):
   
   """
   Input the centered start and end point arrays, the centered coordinate cube, the centered coordinate array and the size of the lines. Also the index of the line to be used (loop through all lines)
-  Output an array containing the number of cells in the perpendicular line to each point and another containing the length of the line.
+  Output an array containing the number of cells in the perpendicular plane to each point in each line and another containing the length of the line.
   Finds the normalization factor. 
   """
 
@@ -148,8 +151,9 @@ def normalize(completeArray, start, end, centeredCube, size, index):
     
     
     #for k in range(27648):
-    for k in range(27648):
-        for j in range(884736):
+    #THERE HAS GOT TO BE A BETTER WAY TO DO THIS 
+    for k in range(nbLines):
+        for j in range(nbCellsinCube):
             array = []
             array.append(newCube[0, j])
             array.append(newCube[1, j])

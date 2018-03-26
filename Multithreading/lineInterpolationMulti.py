@@ -39,7 +39,7 @@ def lineLenX(start, end):
     for line in range(len(start)):
         x = end[line][0] - start[line][0]
         lengthArray.append(x)
-
+    lengthArray = np.asarray(lengthArray)
     return lengthArray
 
 
@@ -60,7 +60,9 @@ def xArray(start, end, length, nbSteps, indicesLen, indicesStepLen, indicesSteps
     for line in range(startLen, stopLen):
         lenSteps = np.divide(length[line], nbSteps, dtype=np.float)
         stepLenArray.append(lenSteps)
-        
+    
+    stepLenArray = np.asarray(stepLenArray)
+    
     startStepLen, stopStepLen = indicesStepLen
     startSteps, stopSteps = indicesSteps
     
