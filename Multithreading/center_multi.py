@@ -36,7 +36,6 @@ def center(start, end, completeArray, size, indices):
 
     start1, stop1, start2, stop2, start3, stop3 = indices
     cubeLen = (stop1-start1)*(stop2-start2)*(stop3-start3)
-    print(cubeLen)
     myCube = np.zeros(shape=(cubeLen, 3))
     # with lock:
     counter = 0
@@ -52,14 +51,13 @@ def center(start, end, completeArray, size, indices):
                 counter += 1
                 # print(counter)
 
-    with lock:
-        counter = 0
+    # with lock:
+    counter = 0
 
     half = np.int(size/2)
     # lock.acquire()
-
     myCube -= half
-    print(myCube)
+    print(half)
     t_completeArray -= half
     t_start -= half
     t_end -= half
