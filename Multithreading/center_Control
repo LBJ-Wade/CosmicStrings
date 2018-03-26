@@ -27,7 +27,7 @@ def center(start, end, completeArray, size):
             for k in range(size):
                 #time.sleep(0.5)
                 myCube.append([i, j, k])
-                print i
+                print (i)
                 
     if (size/2)%2 == 0:
         half = size/2
