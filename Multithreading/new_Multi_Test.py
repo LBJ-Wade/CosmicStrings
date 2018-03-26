@@ -13,7 +13,6 @@ array = [[[1, 2, 3], [4, 5, 6], [7, 8, 9]], [[1, 2, 3], [4, 5, 6], [7, 8, 9]], [
 array2 = [[[1, 2, 3], [4, 5, 6], [7, 8, 9]], [[9, 8, 7], [6, 5, 4], [3, 2, 1]], [[1, 2, 3], [4, 5, 6], [7, 8, 9]]]
 
 
-
 def appending(array, indices):
     """
     Test printing function
@@ -26,7 +25,6 @@ def appending(array, indices):
                 array[i][j][k] = array[i][j][k]
                 time.sleep(1)
     return array
-
 
 
 def multi_threading(array):
@@ -46,18 +44,7 @@ def multi_threading(array):
                 indices = [n, stop1, m, stop2, p, stop3]
                 th.Thread(target=appending, args=(array, indices)).start()
     print("Time for MultiThreading {}".format(time.time() - startTime))
-    
+
     return array
 
 Array = multi_threading(array)
-
-
-
-
-
-
-
-
-
-
-

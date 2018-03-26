@@ -80,14 +80,14 @@ def multi_threading(start, end, length, nbSteps):
         stopLen = n+1 if n+1 <= len(length) else len(length)
         stopStepLen = n+1 if n+1 <= len(stepLenArray) else len(stepLenArray)
         stopSteps = n+1 if n+1 <= nbSteps else nbSteps
-        
+
         indicesLen = [n, stopLen]
         indicesStepLen = [n, stopStepLen]
         indicesSteps = [n, stopSteps]
         th.Thread(target=xArray, args=(start, end, length, nbSteps, indicesLen, indicesStepLen, indicesSteps)).start()
     print("Time for MultiThreading {}".format(time.time() - startTime))
-    
-    return 
+
+    return
 
 
 slopey = []
@@ -140,7 +140,7 @@ def yArray_mp(increments, start, slope, nbSteps, lineNumber):
             array[i] = np.rint((increments[i]-start[0])*slope + start[1])
         else:
             array[i] = np.rint((increments[i]-start[0])*lineNumber + start[1])
-        
+
     return array
 """
 
@@ -155,8 +155,8 @@ def zArray(increments, start, slope, nbSteps):
                 arrayz[i, j] = np.rint((increments[i, j]-start[i][0])*i + start[i][2])
 
     return arrayz
-    
-"""  
+
+"""
 #Was a test for multiprocessing
 def zArray_mp(increments, start, slope, nbSteps, lineNumber):
     array = np.zeros((nbSteps,1), dtype = np.int)
@@ -165,7 +165,7 @@ def zArray_mp(increments, start, slope, nbSteps, lineNumber):
             array[i] = np.rint((increments[i]-start[0])*slope + start[1])
         else:
             array[i] = np.rint((increments[i]-start[0])*lineNumber + start[1])
-            
+
     return array
 """
 
@@ -173,9 +173,9 @@ def lineCreation(start, end):
     print "--> Length..."
     nbSteps = findSteps(start)
     length = lineLen(start,end)
-    print "--> X array..."    
+    print "--> X array..."
     arrayx = xArray(start,end,length, nbSteps)
-    print "--> Slopes..."    
+    print "--> Slopes..."
     slopey = ySlope(start, end)
     slopez = zSlope(start, end)
     print "--> Y array..."
@@ -192,31 +192,28 @@ def initLineCreation_mp(start, end):
     print "Steps..."
     nbSteps = findSteps(start)
     length = lineLen(start,end)
-    print "X array..."    
+    print "X array..."
     x = xArray(start,end,length, nbSteps)
-    print "Slopes..."    
+    print "Slopes..."
     my = ySlope(start, end)
     mz = zSlope(start, end)
-    
+
     return nbSteps, x, my, mz
     """
 def lineCreation_mp(nbSteps, start, x, slopey, slopez, lineNumber):
 #    print "Y Array..."
     arrayy = yArray_mp(x, start, slopey, nbSteps, lineNumber)
-#    print "Z Array..."    
+#    print "Z Array..."
     arrayz = zArray_mp(x, start, slopez, nbSteps, lineNumber)
-    
     return arrayy, arrayz
-    
+
 def multiprocessLine(nbSteps, start, x, my, mz, lineNumber):
     y,z = lineCreation_mp(nbSteps, start, x, my, mz, lineNumber)
-    
     lines = []
     for i in range(len(x)):
         lines.append(np.array([x[i],y[i], z[i]]))
-    
     return lines
-  """  
+  """
 #lines = lineCreation(start,end)
 #lines, arrayx, arrayy, arrayz, slopey, slopez, length = lineCreation(start,end)
 #print np.shape(lines)
