@@ -22,13 +22,13 @@ def algorithm3(pos):
 
     density, size = dens.density(pos, s = 1)
 
-    print "Computing 3D FFT..."
+    print ("Computing 3D FFT...")
     FFTdensity = np.fft.fftn(density)
     
     #Initializing line's start and end points
     start1, end1 = cube.lineParse(size)
     
-    print "Creating lines..."
+    print ("Creating lines...")
     
     #Choose resolution
     startl, endl = pl.chooseLines(start1, end1, pl.getNbLines(size))
@@ -36,7 +36,7 @@ def algorithm3(pos):
     #Make Lines
     lines, xArray, yArray, zArray = line.lineCreation(startl,endl)
     
-    print "Selecting FFT lines..."
+    print ("Selecting FFT lines...")
     fftLines = []
     for i in range(len(lines)):
         for j in range(len(lines[0][0])):
@@ -48,12 +48,12 @@ def algorithm3(pos):
     #Apply inverse 1D FFT for each line
     ifftLines = np.hypot(np.real(np.fft.ifft(fftLines)), np.imag(np.fft.ifft(fftLines)))
     
-    print "Density contrast..."
+    print ("Density contrast...")
     for i in range(len(ifftLines)):
         ifftLines[i] = (ifftLines[i]-np.mean(ifftLines[i]))/np.mean(ifftLines[i])
 
 
-    print "Normalization of dataset..."
+    print ("Normalization of dataset...")
     normFactors, lengths = norm.finalNormalization(xArray, yArray, zArray, size, startl, endl)   
     print (np.shape(normFactors))
     ifftLinesN = normFactors
