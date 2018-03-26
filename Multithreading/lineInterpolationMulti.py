@@ -61,8 +61,10 @@ def xArray(start, end, length, nbSteps, indicesLen, indicesStepLen, indicesSteps
     for line in range(startLen, stopLen):
         lenSteps = np.divide(length[line], nbSteps, dtype=np.float)
         stepLenArray.append(lenSteps)
+        
     startStepLen, stopStepLen = indicesStepLen
     startSteps, stopSteps = indicesSteps
+    
     for k in range(startStepLen, stopStepLen):
         for l in range(startSteps, stopSteps):
             stepsArray[k, l] = np.rint(start[k][0] + l*stepLenArray[k])
@@ -70,11 +72,10 @@ def xArray(start, end, length, nbSteps, indicesLen, indicesStepLen, indicesSteps
 
 def multi_threading(start, end, length, nbSteps):
     """
-    This recquires 'start' and 'stop' indices
+    This requires 'start' and 'stop' indices
     """
 
     print("Releasing cores (2 seconds)")
-    #time.sleep(2)
     startTime = time.time()
     for n in range(0, 3):
         stopLen = n+1 if n+1 <= len(length) else len(length)
