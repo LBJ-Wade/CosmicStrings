@@ -137,12 +137,12 @@ def accuracy_det(data, level = -1, repetitions = 100):
     for i in range(repetitions):
         max_found = 0 
         D = 0
-        print "Try %d" %i
+        print ("Try %d" %i)
         max_found, D = detect_peak(data,level)
         for j in max_found:
             if j == 50.0:
                 accurate += 1
-                print "Worked"
+                print ("Worked")
     return (accurate/np.float(repetitions))*100.0
 
 #Determine the Full Width Half Maximum of the data
@@ -178,8 +178,8 @@ def max_and_width(data, level = -1):
 #max_found, D = detect_peak(ydata,4)
 #plotting(ydata,D, max_found)
 #widths = width_det(ydata, max_found)
-#print widths
+#print (widths)
 #
 #result = accuracy_det(ydata)
-#print result
+#print (result)
 #

@@ -21,7 +21,7 @@ if dataname == "":
 dataname = "../Data/" + dataname
 dataname +=".npz"
 
-print "Loading %s..." %dataname
+print ("Loading %s..." %dataname)
 xpos = np.load(dataname)['x']
 ypos = np.load(dataname)['y']
 zpos = np.load(dataname)['z']
@@ -33,7 +33,7 @@ pos = np.zeros((3,len(xpos)))
 pos[0,:] = xpos[:]
 pos[1,:] = ypos[:]
 pos[2,:] = zpos[:]
-print "Done!"
+print ("Done!")
 
 density, size = dens.density(pos, speed = 1)
 startl, endl = cube.lineParse(size)

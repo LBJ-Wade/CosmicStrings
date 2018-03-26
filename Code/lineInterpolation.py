@@ -131,40 +131,40 @@ def zArray_mp(increments, start, slope, nbSteps, lineNumber):
 """
 
 def lineCreation(start, end):
-    print "--> Length..."
+    print ("--> Length...")
     nbSteps = findSteps(start)
     length = lineLen(start,end)
-    print "--> X array..."    
+    print ("--> X array...")    
     arrayx = xArray(start,end,length, nbSteps)
-    print "--> Slopes..."    
+    print ("--> Slopes...")    
     slopey = ySlope(start, end)
     slopez = zSlope(start, end)
-    print "--> Y array..."
+    print ("--> Y array...")
     arrayy = yArray(arrayx, start, slopey, nbSteps)
-    print "--> Z array..."
+    print ("--> Z array...")
     arrayz = zArray(arrayx, start, slopez, nbSteps)
-    print "--> Making lines..."
+    print ("--> Making lines...")
     lines = []
     for i in range(len(arrayx)):
         lines.append(np.array([arrayx[i][:],arrayy[i][:], arrayz[i][:]]))
     return lines, arrayx, arrayy, arrayz#, slopey, slopez, length
 
 def initLineCreation_mp(start, end):
-    print "Steps..."
+    print ("Steps...")
     nbSteps = findSteps(start)
     length = lineLen(start,end)
-    print "X array..."    
+    print ("X array...")    
     x = xArray(start,end,length, nbSteps)
-    print "Slopes..."    
+    print ("Slopes...")    
     my = ySlope(start, end)
     mz = zSlope(start, end)
     
     return nbSteps, x, my, mz
     """
 def lineCreation_mp(nbSteps, start, x, slopey, slopez, lineNumber):
-#    print "Y Array..."
+#    print ("Y Array...")
     arrayy = yArray_mp(x, start, slopey, nbSteps, lineNumber)
-#    print "Z Array..."    
+#    print ("Z Array...")    
     arrayz = zArray_mp(x, start, slopez, nbSteps, lineNumber)
     
     return arrayy, arrayz

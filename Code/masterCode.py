@@ -73,7 +73,7 @@ def peakDetection(lines):
     for line in range(len(lines)):
         #prints a progress percent --> Need to find a way to output a progress bar!
         if line%50 == 0:
-            print "{0:2.0f}%".format(np.float(line)/np.float(len(lines)) * 100)
+            print ("{0:2.0f}%".format(np.float(line)/np.float(len(lines)) * 100))
         temp = pd.max_and_width(lines[line])
         if len(temp) != 0:
             results.append(temp)        
