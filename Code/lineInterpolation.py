@@ -27,7 +27,7 @@ def findSteps(start):
     return nbSteps
 
 
-def lineLen(start, end):
+def lineLenX(start, end):
     lengthArray = []
     for line in range(len(start)):
         x = end[line][0] - start[line][0]
@@ -152,7 +152,7 @@ def lineCreation(start, end):
 def initLineCreation_mp(start, end):
     print ("Steps...")
     nbSteps = findSteps(start)
-    length = lineLen(start,end)
+    length = lineLenX(start,end)
     print ("X array...")    
     x = xArray(start,end,length, nbSteps)
     print ("Slopes...")    
