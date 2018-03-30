@@ -88,15 +88,14 @@ def reshape(xArray, yArray, zArray, size):
     
     return completeArray
 
-
-def center(start, end, completeArray, size):
-  
-  """
+"""
   Input the start and end point arrays as well as the array of all coordinates from reshape()
   Output a cube of coordinates centered at the origin with the corresponding indices of the start and end points and the coordinate array.
   Centeres all of the inputted arrays as well as the cube of coordinates
-  """
-
+"""
+  
+def center(start, end, completeArray, size):
+    
     myCube = []
     
     for i in range(size):
@@ -135,35 +134,27 @@ def center(start, end, completeArray, size):
 
 
 
-
-#Do this for each point in each line
-def normalize(completeArray, start, end, centeredCube, size, index, nbLines, nbCellsinCube):
-  
-  """
+"""
   Input the centered start and end point arrays, the centered coordinate cube, the centered coordinate array and the size of the lines. Also the index of the line to be used (loop through all lines)
   Output an array containing the number of cells in the perpendicular plane to each point in each line and another containing the length of the line.
   Finds the normalization factor. 
-  """
-
+"""
+#Do this for each point in each line
+def normalize(completeArray, start, end, centeredCube, size, index, nbPtsinLine, nbCellsinCube):
+    
     newCube = np.transpose(centeredCube)
 
-    position = []
+    linePosition = np.array(nbPtsinLine)
     
-    
-    #for k in range(27648):
-    #THERE HAS GOT TO BE A BETTER WAY TO DO THIS 
-    for k in range(nbLines):
-        for j in range(nbCellsinCube):
-            array = []
-            array.append(newCube[0, j])
-            array.append(newCube[1, j])
-            array.append(newCube[2, j])
+    for i in range(nbPtsinLine):
+        address = 0
+        x = completeArray[index, i, 0]
+        y = completeArray[index, i, 1]
+        z = completeArray[index, i, 2]
+        address = x + size*y + (size**2)*z
+        linePosition[i] = address
         
-            if np.array_equal(completeArray[k], array) == True :
-                position.append(j)
-                break;
 
-    
     x = end[0] - start[0]
     y = end[1] - start[1]
     z = end[2] - start[2]
@@ -183,11 +174,10 @@ def normalize(completeArray, start, end, centeredCube, size, index, nbLines, nbC
     matrix = np.dot(Rphi, newCube, out = None)
     rotated = np.dot(Rtheta, matrix, out = None)
     
-    position = np.asarray(position)
-
+    #Need to fix this#
     zArray = []
-    for j in range(len(position)):
-        zArray.append(rotated[2, position[j]])
+    for j in range(len(linePosition)):
+        zArray.append(rotated[2, linePosition[j]])
 
     zArray = np.asarray(zArray)
     
@@ -223,15 +213,13 @@ def normalize(completeArray, start, end, centeredCube, size, index, nbLines, nbC
     nbCells = np.asarray(nbCells)
     return nbCells, length
 
-
-
-def finalNormalization(xArray, yArray, zArray, size, startl, endl):
-  
-  """
+"""
   Input the arrays of x, y, and z coordinates, the start and end points and the size of the lines.
   Outputs the same as normalization()
   Combines all of the above functions.
-  """
+"""
+
+def finalNormalization(xArray, yArray, zArray, size, startl, endl):
     
     newArray = reshape(xArray, yArray, zArray, size)
     cCube, cStart, cEnd, completeArray = center(startl, endl, newArray, size)
@@ -268,11 +256,6 @@ for i in range(10):
 
 
 """
-
-
-
-
-
 
 
 
