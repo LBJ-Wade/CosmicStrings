@@ -163,18 +163,21 @@ def normalize(completeArray, start, end, centeredCube, size, index, nbPtsinLine,
     theta =-1* math.acos(z/(math.sqrt(x**2 + y**2 + z**2)))
         
         
-        
+    #Why does this get transposed twice but not used?    
     completeArray = np.transpose(completeArray)
     
     
     Rphi = np.array([[math.cos(phi), - math.sin(phi), 0], [math.sin(phi), math.cos(phi), 0], [0, 0, 1]])
     Rtheta = np.array([[1, 0, 0], [0, math.cos(theta), - math.sin(theta)], [0, math.sin(theta), math.cos(theta)]])
-
+    
+    #Add pick the right line  
+    
     completeArray = np.transpose(completeArray)
+    
     matrix = np.dot(Rphi, newCube, out = None)
     rotated = np.dot(Rtheta, matrix, out = None)
     
-    #Need to fix this#
+    #Can retrieve the cell from map here, but check first for int. 
     zArray = []
     for j in range(len(linePosition)):
         zArray.append(rotated[2, linePosition[j]])
