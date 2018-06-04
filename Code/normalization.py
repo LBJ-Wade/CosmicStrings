@@ -163,7 +163,7 @@ def normalize(completeArray, start, end, centeredCube, size, index, nbPtsinLine,
     theta =-1* math.acos(z/(math.sqrt(x**2 + y**2 + z**2)))
         
         
-    #Why does this get transposed twice but not used?    
+    #Why does this get transposed twice but not used? - New Cube is used later!
     completeArray = np.transpose(completeArray)
     
     
@@ -177,7 +177,7 @@ def normalize(completeArray, start, end, centeredCube, size, index, nbPtsinLine,
     matrix = np.dot(Rphi, newCube, out = None)
     rotated = np.dot(Rtheta, matrix, out = None)
     
-    #Can retrieve the cell from map here, but check first for int. 
+    #Can retrieve the cell from map here, but check first that rotated[index] is an int. 
     zArray = []
     for j in range(len(linePosition)):
         zArray.append(rotated[2, linePosition[j]])
