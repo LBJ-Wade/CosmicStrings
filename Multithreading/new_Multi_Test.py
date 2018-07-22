@@ -14,10 +14,12 @@ array2 = [[[1, 2, 3], [4, 5, 6], [7, 8, 9]], [[9, 8, 7], [6, 5, 4], [3, 2, 1]], 
 
 
 
+
 def appending(array, indices):
     """
     Test printing function
     """
+
     start1, stop1, start2, stop2, start3, stop3 = indices
     for i in range(start1, stop1):
         for j in range(start2, stop2):
@@ -29,13 +31,29 @@ def appending(array, indices):
 
 
 
+def appending2(array):
+    """
+    Test printing function
+    """
+    startTime = time.time()
+    for i in range(3):
+        for j in range(3):
+            for k in range(3):
+                time.sleep(1)
+                array[i][j][k] = array[i][j][k]
+                time.sleep(1)
+    print("Time for regular {}".format(time.time() - startTime))
+    return array
+
+
+
 def multi_threading(array):
     """
     This recquires 'start' and 'stop' indices
     """
 
     print("Releasing cores (2 seconds)")
-    time.sleep(2)
+    #time.sleep(2)
     startTime = time.time()
     for n in range(0, 3):
         for m in range(0, 3):
@@ -51,7 +69,7 @@ def multi_threading(array):
 
 Array = multi_threading(array)
 
-
+array = appending2(array)
 
 
 

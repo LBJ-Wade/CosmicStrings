@@ -177,7 +177,6 @@ def normalize(completeArray, start, end, centeredCube, size, index, nbPtsinLine,
     matrix = np.dot(Rphi, newCube, out = None)
     rotated = np.dot(Rtheta, matrix, out = None)
     
-    #Can retrieve the cell from map here, but check first that rotated[index] is an int. 
     zArray = []
     for j in range(len(linePosition)):
         zArray.append(rotated[2, linePosition[j]])

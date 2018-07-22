@@ -40,7 +40,7 @@ for n in range(0, 3):
         th.Thread(target = printing, args = (n, stop1, m, stop2)).start()
 
 for count in range(len(myArray)):
-    print myArray[count]
+    print (myArray[count]) 
 
 #endTime = time.time()
 
