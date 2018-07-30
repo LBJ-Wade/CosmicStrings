@@ -7,27 +7,11 @@ Created on Thu Feb 22 23:27:17 2018
 """
 import threading as th
 import time
+import numpy as np
 
 
 array = [[[1, 2, 3], [4, 5, 6], [7, 8, 9]], [[1, 2, 3], [4, 5, 6], [7, 8, 9]], [[1, 2, 3], [4, 5, 6], [7, 8, 9]]]
 array2 = [[[1, 2, 3], [4, 5, 6], [7, 8, 9]], [[9, 8, 7], [6, 5, 4], [3, 2, 1]], [[1, 2, 3], [4, 5, 6], [7, 8, 9]]]
-
-
-
-
-def appending(array, indices):
-    """
-    Test printing function
-    """
-
-    start1, stop1, start2, stop2, start3, stop3 = indices
-    for i in range(start1, stop1):
-        for j in range(start2, stop2):
-            for k in range(start3, stop3):
-                time.sleep(1)
-                array[i][j][k] = array[i][j][k]
-                time.sleep(1)
-    return array
 
 
 
@@ -39,11 +23,27 @@ def appending2(array):
     for i in range(3):
         for j in range(3):
             for k in range(3):
-                time.sleep(1)
-                array[i][j][k] = array[i][j][k]
-                time.sleep(1)
+                #time.sleep(1)
+                array[i][j][k] = 2* array[i][j][k]
+                #time.sleep(1)
     print("Time for regular {}".format(time.time() - startTime))
     return array
+
+newArray = np.zeros((3, 3, 3))
+
+def appending(array, indices):
+    """
+    Test printing function
+    """
+
+    start1, stop1, start2, stop2, start3, stop3 = indices
+    for i in range(start1, stop1):
+        for j in range(start2, stop2):
+            for k in range(start3, stop3):
+                #time.sleep(1)
+                newArray[i, j, k] = 2* array[i][j][k]
+                #time.sleep(1)
+    return newArray
 
 
 
@@ -69,7 +69,7 @@ def multi_threading(array):
 
 Array = multi_threading(array)
 
-array = appending2(array)
+#array1 = appending2(array)
 
 
 

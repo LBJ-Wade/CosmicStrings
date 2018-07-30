@@ -10,6 +10,7 @@ import numpy as np
 #import cube
 #import density3D as dens
 import math
+import normalization_multi as Mnorm
 
 
 """
@@ -140,8 +141,8 @@ def center(start, end, completeArray, size):
   Finds the normalization factor. 
 """
 #Do this for each point in each line
-def normalize(completeArray, start, end, centeredCube, size, index, nbPtsinLine, nbCellsinCube):
-    
+def normalize(completeArray, start, end, centeredCube, size, index):
+    nbPtsinLine = len(completeArray)    
     newCube = np.transpose(centeredCube)
 
     linePosition = np.array(nbPtsinLine)
@@ -229,7 +230,7 @@ def finalNormalization(xArray, yArray, zArray, size, startl, endl):
     lengths = []
     count = 0
     for i in range(len(completeArray)):
-        factor, length = normalize(completeArray[i], cStart[i], cEnd[i], cCube, size, i)
+        factor, length = Mnorm.multi_threading_normalize(completeArray[i], cStart[i], cEnd[i], cCube, size, i)
         normFactors.append(factor)
         lengths.append(length)
         count += 1

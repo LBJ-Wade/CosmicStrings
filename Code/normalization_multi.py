@@ -10,12 +10,16 @@ import numpy as np
 import math 
 
 import threading as th
-import time
+#import time
+
+#Number of cells in the pernpendicular planefor each point on the line
+nbCells = []
+length = 0
 
 
-
-def normalize(completeArray, start, end, centeredCube, size, index, nbPtsinLine, nbCellsinCube, indices):
+def normalize(completeArray, start, end, centeredCube, size, index, indices):
     
+    nbPtsinLine = len(completeArray)
     newCube = np.transpose(centeredCube)
 
     linePosition = np.array(nbPtsinLine)
@@ -60,6 +64,7 @@ def normalize(completeArray, start, end, centeredCube, size, index, nbPtsinLine,
     
     negativeMin = np.min(zArray)
     
+    #Shifts everything to positive values
     for j in range(len(zArray)):
         zArray[j] = zArray[j] + abs(negativeMin)
 
@@ -76,7 +81,7 @@ def normalize(completeArray, start, end, centeredCube, size, index, nbPtsinLine,
     lowerBound = np.asarray(lowerBound)
     upperBound = np.asarray(upperBound)
     
-    nbCells = []
+    #nbCells = []
 
     for k in range(len(upperBound)):
         counter = 0
@@ -95,21 +100,21 @@ def normalize(completeArray, start, end, centeredCube, size, index, nbPtsinLine,
 
 """ Need to fix this """
 
-def multi_threading_normalize(array):
+def multi_threading_normalize(completeArray, start, end, centeredCube, size, index):
     """
-    This recquires 'start' and 'stop' indices
+    This requires 'start' and 'stop' indices
     """
 
-    print("Releasing cores (2 seconds)")
+    #print("Releasing cores (2 seconds)")
     #time.sleep(2)
-    startTime = time.time()
+    #startTime = time.time()
     for n in range(0, 3):
         stop = n+1 if n+1 <= 3 else 3
         indices = [n, stop]
-        th.Thread(target=normalize, args=(array, indices)).start()
-    print("Time for MultiThreading {}".format(time.time() - startTime))
+        th.Thread(target=normalize, args=(completeArray, start, end, centeredCube, size, index, indices)).start()
+    #print("Time for MultiThreading {}".format(time.time() - startTime))
     
-    return array
+    return nbCells, length
 
 
 

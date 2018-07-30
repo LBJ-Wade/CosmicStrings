@@ -16,6 +16,7 @@ import normalization as norm
 import lineInterpolation as line
 
 
+
 #This algo does not return ridglet coefficients, but rather the 
 #lines that have been created before the wavelet transform should 
 #occur
