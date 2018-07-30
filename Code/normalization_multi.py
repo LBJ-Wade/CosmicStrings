@@ -95,7 +95,7 @@ def normalize(completeArray, start, end, centeredCube, size, index, nbPtsinLine,
 
 """ Need to fix this """
 
-def multi_threading(array):
+def multi_threading_normalize(array):
     """
     This recquires 'start' and 'stop' indices
     """
