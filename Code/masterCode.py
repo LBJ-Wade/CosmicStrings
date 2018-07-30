@@ -118,12 +118,12 @@ def ask():
     be implemented correctly). Just a simple user-friendly option!
     """
     default_name = "../RawData/0.000xv0(1)"
-    simulationFile = raw_input("Name of the file (w/o '.dat') ? ")
+    simulationFile = input("Name of the file (w/o '.dat') ? ")
     if simulationFile == "":
         simulationFile = default_name+".dat"
     return wakeDetection(simulationFile)
     
-#ask()
-lines = np.load("../TestData/linesTest.npy")
-results = peakDetection(preCut(lines))
+ask()
+#lines = np.load("../TestData/linesTest.npy")
+#results = peakDetection(preCut(lines))
     

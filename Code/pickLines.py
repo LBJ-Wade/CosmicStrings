@@ -8,8 +8,8 @@ Created on Mon Mar 12 21:06:44 2018
 import numpy as np
 
 
-def getNbLines():
-    resolution = input("Percentage of lines to consider (integer): ")/100.0
+def getNbLines(size):
+    resolution = int(input("Percentage of lines to consider (integer): "))/100.0
     stepLen = np.floor(1.0/resolution)
     return stepLen
 
@@ -33,3 +33,4 @@ def chooseLines(start, end, stepLen):
 
 
 
+#stepLen = getNbLines(10000)

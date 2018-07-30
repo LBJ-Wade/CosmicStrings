@@ -39,7 +39,9 @@ def lineLenX(start, end):
 #Define the length of steps necessary to have the apropriate number of steps
 #and then find the x value for each point for each step
 def xArray(start, end, length, nbSteps):
-    stepsArray = np.zeros((len(start),nbSteps), dtype = np.int)
+    print(len(start))
+    print(nbSteps)
+    stepsArray = np.zeros((len(start),nbSteps))
     stepLenArray = []
 
     for line in range(len(length)):

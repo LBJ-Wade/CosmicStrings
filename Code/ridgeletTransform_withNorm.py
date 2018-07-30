@@ -33,7 +33,8 @@ def algorithm3(pos):
     print ("Creating lines...")
     
     #Choose resolution
-    startl, endl = pl.chooseLines(start1, end1, pl.getNbLines(size))
+    #resolution = pl.getNbLines(size)
+    startl, endl = start1, end1#pl.chooseLines(int(start1), int(end1), int(resolution))
     
     #Make Lines
     lines, xArray, yArray, zArray = line.lineCreation(startl,endl)
@@ -66,8 +67,8 @@ def algorithm3(pos):
             ifftLinesN[i][j] = ifftLines[i][j]/normFactors[i][j]
     return ifftLinesN
   
-  #Wavelet code
-  """
+#Wavelet code
+"""
     cA = []
     cD = []
 
@@ -85,7 +86,7 @@ def algorithm3(pos):
     
 cA, cD = algorithm3(pos)
             
-    """        
+"""        
 
 
     
