@@ -22,7 +22,8 @@ import numpy as np
 
 #Find a measure for each cube
 def findSteps(nbCells):
-    nbSteps = (nbCells+1)
+    numberCells = len(nbCells)
+    nbSteps = (numberCells+1)
     return nbSteps
 
 
@@ -39,8 +40,6 @@ def lineLenX(start, end):
 #Define the length of steps necessary to have the apropriate number of steps
 #and then find the x value for each point for each step
 def xArray(start, end, length, nbSteps):
-    print(len(start))
-    print(nbSteps)
     stepsArray = np.zeros((len(start),nbSteps))
     stepLenArray = []
 
