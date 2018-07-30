@@ -118,7 +118,8 @@ def ask():
     be implemented correctly). Just a simple user-friendly option!
     """
     default_name = "../RawData/0.000xv0(1)"
-    simulationFile = input("Name of the file (w/o '.dat') ? ")
+    simulationFile = default_name + ".dat"
+    #simulationFile = input("Name of the file (w/o '.dat') ? ")
     if simulationFile == "":
         simulationFile = default_name+".dat"
     return wakeDetection(simulationFile)
